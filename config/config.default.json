@@ -1,0 +1,37 @@
+{
+  "version": "5.0.0",
+  "provider": "openai",
+  "apiKey": "",
+  "model": "gpt-4",
+  "apiEndpoint": "https://api.openai.com/v1",
+  "authHeaderName": "Authorization",
+  "authHeaderValuePrefix": "Bearer ",
+  "websocketPort": 8765,
+  "dataDir": null,
+  "hermes": {
+    "enabled": true,
+    "dataDir": null,
+    "pythonPath": ""
+  },
+  "openclaw": {
+    "enabled": true,
+    "dataDir": null,
+    "plugins": []
+  },
+  "execution": {
+    "mode": "serial",
+    "retryCount": 3,
+    "stepTimeoutSec": 300,
+    "taskTimeoutSec": 3600
+  },
+  "trustMode": {
+    "enabled": false,
+    "duration": "10m"
+  },
+  "logging": {
+    "level": "info",
+    "maxFiles": 7,
+    "file": null
+  },
+  "language": "zh"
+}

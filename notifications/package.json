@@ -1,0 +1,18 @@
+{
+  "name": "clawmind-notifications",
+  "version": "0.1.0",
+  "description": "ClawMind 通知系统",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "clawmind",
+    "notifications"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "node-notifier": "^10.0.1"
+  }
+}

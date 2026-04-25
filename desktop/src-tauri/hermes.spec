@@ -1,0 +1,76 @@
+# -*- mode: python ; coding: utf-8 -*-
+
+block_cipher = None
+
+a = Analysis(
+    ['../../hermes/server.py'],
+    pathex=['../../hermes'],
+    binaries=[],
+    datas=[
+        ('../../hermes/planner.py', '.'),
+        ('../../hermes/executor.py', '.'),
+        ('../../hermes/skills_integration.py', '.'),
+        ('../../hermes/modules/__init__.py', 'modules'),
+        ('../../hermes/modules/desktop_operations.py', 'modules'),
+    ],
+    hiddenimports=[
+        'websockets',
+        'websockets.server',
+        'websockets.client',
+        'asyncio',
+        'pyautogui',
+        'pyperclip',
+        'pyscreeze',
+        'PIL',
+        'PIL.Image',
+        'PIL.ImageGrab',
+        'aiosqlite',
+        'aiohttp',
+        'json',
+        'logging',
+        'pathlib',
+        'shutil',
+    ],
+    hookspath=[],
+    hooksconfig={},
+    runtime_hooks=['runtime_hook.py'],
+    excludes=[
+        'tkinter',
+        'matplotlib',
+        'numpy',
+        'pandas',
+        'scipy',
+        'IPython',
+        'jupyter',
+        'cv2',
+    ],
+    win_no_prefer_redirects=False,
+    win_private_assemblies=False,
+    cipher=block_cipher,
+    noarchive=False,
+)
+
+pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+
+exe = EXE(
+    pyz,
+    a.scripts,
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    [],
+    name='hermes',
+    debug=False,
+    bootloader_ignore_signals=False,
+    strip=False,
+    upx=True,
+    upx_exclude=[],
+    runtime_tmpdir=None,
+    console=False,
+    disable_windowed_traceback=False,
+    argv_emulation=False,
+    target_arch=None,
+    codesign_identity=None,
+    entitlements_file=None,
+    icon=None,
+)

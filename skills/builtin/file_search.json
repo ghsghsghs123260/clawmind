@@ -1,0 +1,64 @@
+{
+  "name": "file_search",
+  "description": "Search for files in a directory by name or pattern",
+  "trigger": {
+    "keywords": ["find files", "search files", "locate file"],
+    "patterns": [
+      "find {pattern} in {directory}",
+      "search for {pattern} files",
+      "locate {pattern} in {directory}"
+    ]
+  },
+  "parameters": [
+    {
+      "name": "pattern",
+      "type": "string",
+      "description": "File name pattern (supports wildcards)",
+      "required": true
+    },
+    {
+      "name": "directory",
+      "type": "string",
+      "description": "Directory to search in",
+      "required": false
+    },
+    {
+      "name": "recursive",
+      "type": "boolean",
+      "description": "Search recursively in subdirectories",
+      "required": false,
+      "default": true
+    }
+  ],
+  "actions": [
+    {
+      "step": 1,
+      "action": "file.search",
+      "params": {
+        "pattern": "{{pattern}}",
+        "path": "{{directory}}",
+        "recursive": true
+      }
+    },
+    {
+      "step": 2,
+      "action": "notification.send",
+      "params": {
+        "title": "File Search Complete",
+        "message": "Found {{step1.result.count}} files matching '{{pattern}}'"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "title": "Find all JavaScript files",
+      "input": "find *.js in /project/src",
+      "output": "Found 42 files matching '*.js'"
+    },
+    {
+      "title": "Search for config files",
+      "input": "search for config.json files",
+      "output": "Found 3 files matching 'config.json'"
+    }
+  ]
+}

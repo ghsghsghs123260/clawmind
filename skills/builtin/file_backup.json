@@ -1,0 +1,66 @@
+{
+  "name": "file_backup",
+  "description": "将指定文件或目录备份到目标位置",
+  "trigger": {
+    "keywords": ["backup", "备份", "备份文件", "file backup", "拷贝文件", "copy file"],
+    "patterns": [
+      "backup {source} to {destination}",
+      "备份 {source} 到 {destination}",
+      "copy {source} to {destination}",
+      "备份 {source}"
+    ]
+  },
+  "parameters": [
+    {
+      "name": "source",
+      "type": "string",
+      "description": "源文件或目录路径",
+      "required": true
+    },
+    {
+      "name": "destination",
+      "type": "string",
+      "description": "备份目标路径",
+      "required": false
+    }
+  ],
+  "actions": [
+    {
+      "step": 1,
+      "action": "file.info",
+      "params": {
+        "path": "{{source}}"
+      }
+    },
+    {
+      "step": 2,
+      "action": "file.copy",
+      "params": {
+        "source": "{{source}}",
+        "destination": "{{destination}}"
+      }
+    },
+    {
+      "step": 3,
+      "action": "file.info",
+      "params": {
+        "path": "{{destination}}"
+      }
+    },
+    {
+      "step": 4,
+      "action": "notification.send",
+      "params": {
+        "title": "备份完成",
+        "message": "{{source}} 已备份到 {{destination}}"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "title": "备份文件到指定目录",
+      "input": "backup C:/docs/report.pdf to D:/backup/",
+      "output": "C:/docs/report.pdf 已备份到 D:/backup/"
+    }
+  ]
+}

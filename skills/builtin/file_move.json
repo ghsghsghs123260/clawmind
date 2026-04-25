@@ -1,0 +1,52 @@
+{
+  "name": "file_move",
+  "description": "移动或重命名文件",
+  "trigger": {
+    "keywords": ["move", "移动", "重命名", "rename", "mv"],
+    "patterns": [
+      "move {source} to {destination}",
+      "移动 {source} 到 {destination}",
+      "rename {source} to {destination}",
+      "重命名 {source} 为 {destination}"
+    ]
+  },
+  "parameters": [
+    {
+      "name": "source",
+      "type": "string",
+      "description": "源文件路径",
+      "required": true
+    },
+    {
+      "name": "destination",
+      "type": "string",
+      "description": "目标路径",
+      "required": true
+    }
+  ],
+  "actions": [
+    {
+      "step": 1,
+      "action": "file.move",
+      "params": {
+        "source": "{{source}}",
+        "destination": "{{destination}}"
+      }
+    },
+    {
+      "step": 2,
+      "action": "notification.send",
+      "params": {
+        "title": "移动完成",
+        "message": "{{source}} 已移动到 {{destination}}"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "title": "移动文件",
+      "input": "move C:/temp/log.txt to C:/logs/",
+      "output": "C:/temp/log.txt 已移动到 C:/logs/"
+    }
+  ]
+}

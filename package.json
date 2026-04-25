@@ -1,0 +1,35 @@
+{
+  "name": "clawmind",
+  "version": "5.0.0",
+  "description": "ClawMind - AI Agent System (OpenClaw + Hermes Agent)",
+  "main": "cli.js",
+  "bin": {
+    "clawmind": "./cli.js"
+  },
+  "scripts": {
+    "start": "node cli.js start",
+    "stop": "node cli.js stop",
+    "restart": "node cli.js restart",
+    "doctor": "node cli.js doctor",
+    "status": "node cli.js status",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "openclaw",
+    "hermes",
+    "automation"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "node-notifier": "^10.0.1",
+    "ws": "^8.20.0"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.5"
+  }
+}

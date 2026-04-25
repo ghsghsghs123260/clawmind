@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ClawMind Configuration",
+  "type": "object",
+  "properties": {
+    "apiKey": {
+      "type": "string",
+      "description": "AI 模型 API Key",
+      "minLength": 1
+    },
+    "model": {
+      "type": "string",
+      "description": "使用的 AI 模型",
+      "default": "gpt-4",
+      "enum": ["gpt-4", "gpt-3.5-turbo", "claude-3-opus", "claude-3-sonnet"]
+    },
+    "apiEndpoint": {
+      "type": "string",
+      "description": "API 端点地址",
+      "default": "https://api.openai.com/v1"
+    },
+    "dataPath": {
+      "type": "string",
+      "description": "数据存储路径",
+      "default": "../data"
+    },
+    "websocket": {
+      "type": "object",
+      "properties": {
+        "port": {
+          "type": "integer",
+          "description": "WebSocket 服务端口",
+          "default": 8765,
+          "minimum": 1024,
+          "maximum": 65535
+        },
+        "host": {
+          "type": "string",
+          "description": "WebSocket 服务地址",
+          "default": "localhost"
+        }
+      },
+      "required": ["port", "host"]
+    },
+    "hermes": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "是否启用 Hermes Agent",
+          "default": true
+        },
+        "pythonPath": {
+          "type": "string",
+          "description": "Python 解释器路径（留空自动检测）",
+          "default": ""
+        }
+      }
+    },
+    "openclaw": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "是否启用 OpenClaw",
+          "default": true
+        },
+        "plugins": {
+          "type": "array",
+          "description": "启用的插件列表",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      }
+    },
+    "desktop": {
+      "type": "object",
+      "properties": {
+        "autoStart": {
+          "type": "boolean",
+          "description": "是否自动启动桌面端",
+          "default": false
+        },
+        "theme": {
+          "type": "string",
+          "description": "界面主题",
+          "enum": ["light", "dark", "auto"],
+          "default": "auto"
+        }
+      }
+    },
+    "logging": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string",
+          "description": "日志级别",
+          "enum": ["debug", "info", "warn", "error"],
+          "default": "info"
+        },
+        "file": {
+          "type": "string",
+          "description": "日志文件路径",
+          "default": "../data/logs/clawmind.log"
+        }
+      }
+    }
+  },
+  "required": ["apiKey", "model", "websocket"]
+}

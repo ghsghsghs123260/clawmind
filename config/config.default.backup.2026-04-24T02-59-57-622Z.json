@@ -1,0 +1,26 @@
+{
+  "apiKey": "",
+  "model": "gpt-4",
+  "apiEndpoint": "https://api.openai.com/v1",
+  "dataPath": "../data",
+  "websocket": {
+    "port": 8765,
+    "host": "localhost"
+  },
+  "hermes": {
+    "enabled": true,
+    "pythonPath": ""
+  },
+  "openclaw": {
+    "enabled": true,
+    "plugins": []
+  },
+  "desktop": {
+    "autoStart": false,
+    "theme": "auto"
+  },
+  "logging": {
+    "level": "info",
+    "file": "../data/logs/clawmind.log"
+  }
+}

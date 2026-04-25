@@ -1,0 +1,51 @@
+{
+  "name": "file_copy",
+  "description": "复制文件或目录到指定位置",
+  "trigger": {
+    "keywords": ["copy", "复制", "复制文件", "拷贝", "cp"],
+    "patterns": [
+      "copy {source} to {destination}",
+      "复制 {source} 到 {destination}",
+      "cp {source} {destination}"
+    ]
+  },
+  "parameters": [
+    {
+      "name": "source",
+      "type": "string",
+      "description": "源文件路径",
+      "required": true
+    },
+    {
+      "name": "destination",
+      "type": "string",
+      "description": "目标路径",
+      "required": true
+    }
+  ],
+  "actions": [
+    {
+      "step": 1,
+      "action": "file.copy",
+      "params": {
+        "source": "{{source}}",
+        "destination": "{{destination}}"
+      }
+    },
+    {
+      "step": 2,
+      "action": "notification.send",
+      "params": {
+        "title": "复制完成",
+        "message": "{{source}} 已复制到 {{destination}}"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "title": "复制文件",
+      "input": "copy C:/docs/report.pdf to D:/backup/",
+      "output": "C:/docs/report.pdf 已复制到 D:/backup/"
+    }
+  ]
+}

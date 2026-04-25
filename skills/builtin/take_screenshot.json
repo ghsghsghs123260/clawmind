@@ -1,0 +1,56 @@
+{
+  "name": "take_screenshot",
+  "description": "Take a screenshot of the entire screen or a specific window",
+  "trigger": {
+    "keywords": ["screenshot", "capture screen", "take picture"],
+    "patterns": [
+      "take a? screenshot",
+      "capture (the )?screen",
+      "screenshot (.+)"
+    ]
+  },
+  "parameters": [
+    {
+      "name": "filename",
+      "type": "string",
+      "description": "Output filename (default: screenshot_TIMESTAMP.png)",
+      "required": false
+    },
+    {
+      "name": "region",
+      "type": "string",
+      "description": "Region to capture (fullscreen, window, selection)",
+      "required": false
+    }
+  ],
+  "actions": [
+    {
+      "step": 1,
+      "action": "desktop.capture_screen",
+      "params": {
+        "filename": "{{filename}}",
+        "region": "{{region}}"
+      }
+    },
+    {
+      "step": 2,
+      "action": "notification.send",
+      "params": {
+        "title": "Screenshot Saved",
+        "message": "Screenshot saved to {{step1.result.path}}"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "title": "Take full screen screenshot",
+      "input": "take a screenshot",
+      "output": "Screenshot saved to screenshot_20260424_120000.png"
+    },
+    {
+      "title": "Screenshot with custom name",
+      "input": "screenshot my_screen.png",
+      "output": "Screenshot saved to my_screen.png"
+    }
+  ]
+}

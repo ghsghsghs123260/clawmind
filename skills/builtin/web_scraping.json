@@ -1,0 +1,66 @@
+{
+  "name": "web_scraping",
+  "description": "打开网页并提取指定内容",
+  "trigger": {
+    "keywords": ["scrape", "web scraping", "网页抓取", "提取网页", "extract web", "抓取网页"],
+    "patterns": [
+      "scrape {url}",
+      "extract from {url} selector {selector}",
+      "抓取 {url}",
+      "scrape {url} selector {selector}"
+    ]
+  },
+  "parameters": [
+    {
+      "name": "url",
+      "type": "string",
+      "description": "要抓取的网页 URL",
+      "required": true
+    },
+    {
+      "name": "selector",
+      "type": "string",
+      "description": "CSS 选择器，指定要提取的元素",
+      "required": false
+    }
+  ],
+  "actions": [
+    {
+      "step": 1,
+      "action": "browser.open",
+      "params": {
+        "url": "{{url}}"
+      }
+    },
+    {
+      "step": 2,
+      "action": "browser.wait_for",
+      "params": {
+        "selector": "{{selector}}",
+        "timeout": 5000
+      }
+    },
+    {
+      "step": 3,
+      "action": "browser.extract",
+      "params": {
+        "selector": "{{selector}}"
+      }
+    },
+    {
+      "step": 4,
+      "action": "notification.send",
+      "params": {
+        "title": "网页抓取完成",
+        "message": "已从 {{url}} 提取内容"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "title": "抓取网页标题",
+      "input": "scrape https://example.com",
+      "output": "已从 https://example.com 提取内容"
+    }
+  ]
+}

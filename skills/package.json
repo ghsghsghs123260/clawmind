@@ -1,0 +1,15 @@
+{
+  "name": "clawmind-skills",
+  "version": "0.1.0",
+  "description": "ClawMind 技能系统",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "clawmind",
+    "skills"
+  ],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,34 @@
+{
+  "name": "clawmind-openclaw",
+  "version": "5.0.0",
+  "description": "ClawMind OpenClaw Integration Layer",
+  "main": "client.js",
+  "scripts": {
+    "bundle": "node build.js",
+    "start": "node client.js",
+    "build": "node build.js && pkg dist/client.js --target node18-win-x64 --output ../desktop/src-tauri/binaries/openclaw.exe --compress GZip",
+    "build:only": "pkg dist/client.js --target node18-win-x64 --output ../desktop/src-tauri/binaries/openclaw.exe --compress GZip"
+  },
+  "keywords": [
+    "openclaw",
+    "clawmind"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.16.0"
+  },
+  "pkg": {
+    "assets": [
+      "modules/**/*",
+      "memory/**/*",
+      "skills/**/*",
+      "notifications/**/*"
+    ],
+    "targets": [
+      "node18-win-x64"
+    ],
+    "outputPath": "../desktop/src-tauri/binaries",
+    "compress": "GZip"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "screenshot_and_save",
+  "description": "对指定区域截图并保存到文件",
+  "trigger": {
+    "keywords": ["截图保存", "截图并保存", "save screenshot", "screenshot save"],
+    "patterns": [
+      "截图保存到 {output_path}",
+      "screenshot and save {output_path}",
+      "save screenshot to {output_path}",
+      "截图并保存"
+    ]
+  },
+  "parameters": [
+    {
+      "name": "output_path",
+      "type": "string",
+      "description": "截图保存路径",
+      "required": false
+    },
+    {
+      "name": "region",
+      "type": "string",
+      "description": "截图区域 (fullscreen, window, selection)",
+      "required": false
+    }
+  ],
+  "actions": [
+    {
+      "step": 1,
+      "action": "desktop.capture_screen",
+      "params": {
+        "filename": "{{output_path}}",
+        "region": "{{region}}"
+      }
+    },
+    {
+      "step": 2,
+      "action": "notification.send",
+      "params": {
+        "title": "截图已保存",
+        "message": "截图保存到 {{step1.result.path}}"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "title": "截图保存到指定路径",
+      "input": "截图保存到 D:/screenshots/test.png",
+      "output": "截图保存到 D:/screenshots/test.png"
+    }
+  ]
+}

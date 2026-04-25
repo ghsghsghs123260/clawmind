@@ -1,0 +1,36 @@
+{
+  "name": "window_manage",
+  "description": "管理窗口操作（截图特定区域、获取屏幕尺寸、查找窗口）",
+  "trigger": {
+    "keywords": ["window", "窗口", "screen", "屏幕", "分辨率", "resolution"],
+    "patterns": [
+      "get screen size",
+      "屏幕尺寸",
+      "屏幕分辨率",
+      "获取屏幕大小"
+    ]
+  },
+  "parameters": [],
+  "actions": [
+    {
+      "step": 1,
+      "action": "desktop.get_screen_size",
+      "params": {}
+    },
+    {
+      "step": 2,
+      "action": "notification.send",
+      "params": {
+        "title": "屏幕信息",
+        "message": "屏幕尺寸: {{step1.result.width}}x{{step1.result.height}}"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "title": "获取屏幕分辨率",
+      "input": "屏幕分辨率",
+      "output": "屏幕尺寸: 1920x1080"
+    }
+  ]
+}

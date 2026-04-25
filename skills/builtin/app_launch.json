@@ -1,0 +1,51 @@
+{
+  "name": "app_launch",
+  "description": "启动应用程序",
+  "trigger": {
+    "keywords": ["launch app", "open app", "启动应用", "打开应用", "启动", "打开", "运行程序"],
+    "patterns": [
+      "launch {app}",
+      "open {app}",
+      "启动 {app}",
+      "打开 {app}",
+      "运行 {app}"
+    ]
+  },
+  "parameters": [
+    {
+      "name": "app",
+      "type": "string",
+      "description": "应用程序名称或路径",
+      "required": true
+    }
+  ],
+  "actions": [
+    {
+      "step": 1,
+      "action": "terminal.exec",
+      "params": {
+        "command": "start \"\" \"{{app}}\""
+      }
+    },
+    {
+      "step": 2,
+      "action": "notification.send",
+      "params": {
+        "title": "应用已启动",
+        "message": "{{app}} 已启动"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "title": "启动记事本",
+      "input": "打开 notepad",
+      "output": "notepad 已启动"
+    },
+    {
+      "title": "启动浏览器",
+      "input": "launch chrome",
+      "output": "chrome 已启动"
+    }
+  ]
+}

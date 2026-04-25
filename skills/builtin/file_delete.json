@@ -1,0 +1,45 @@
+{
+  "name": "file_delete",
+  "description": "删除文件或目录",
+  "trigger": {
+    "keywords": ["delete", "删除", "remove", "移除", "del", "rm"],
+    "patterns": [
+      "delete {path}",
+      "删除 {path}",
+      "remove {path}",
+      "移除 {path}"
+    ]
+  },
+  "parameters": [
+    {
+      "name": "path",
+      "type": "string",
+      "description": "要删除的文件或目录路径",
+      "required": true
+    }
+  ],
+  "actions": [
+    {
+      "step": 1,
+      "action": "file.delete",
+      "params": {
+        "path": "{{path}}"
+      }
+    },
+    {
+      "step": 2,
+      "action": "notification.send",
+      "params": {
+        "title": "删除完成",
+        "message": "{{path}} 已删除"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "title": "删除文件",
+      "input": "delete C:/temp/old_data.txt",
+      "output": "C:/temp/old_data.txt 已删除"
+    }
+  ]
+}

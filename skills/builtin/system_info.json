@@ -1,0 +1,47 @@
+{
+  "name": "system_info",
+  "description": "获取系统信息（CPU、内存、磁盘、网络）",
+  "trigger": {
+    "keywords": ["system info", "系统信息", "系统状态", "system status"],
+    "patterns": [
+      "show system info",
+      "check {resource} usage",
+      "系统信息",
+      "查看系统",
+      "查看 {resource}"
+    ]
+  },
+  "parameters": [
+    {
+      "name": "resource",
+      "type": "string",
+      "description": "要查看的资源类型 (cpu/memory/disk/all)",
+      "required": false,
+      "default": "all"
+    }
+  ],
+  "actions": [
+    {
+      "step": 1,
+      "action": "terminal.exec",
+      "params": {
+        "command": "systeminfo | findstr /C:\"OS\" /C:\"Total Physical Memory\" /C:\"Available Physical Memory\""
+      }
+    },
+    {
+      "step": 2,
+      "action": "notification.send",
+      "params": {
+        "title": "系统信息",
+        "message": "系统信息查询完成"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "title": "查看系统信息",
+      "input": "系统信息",
+      "output": "显示 CPU、内存、磁盘等信息"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Data (per-user)
+data/
+
+# Config with secrets
+config/config.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build outputs
+desktop/dist/
+desktop/src-tauri/target/
+desktop/src-tauri/binaries/*.exe
+desktop/src-tauri/build/
+openclaw/dist/
+*.msi
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# PyInstaller temp
+__pycache__/
+*.pyc
